@@ -1,0 +1,64 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with authentication and settings",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "User unique identifier from Firebase Auth" },
+        "displayName": { "type": "string", "description": "User display name" },
+        "email": { "type": "string", "format": "email", "description": "User email address" },
+        "photoURL": { "type": "string", "description": "User avatar profile image URL" },
+        "createdAt": { "type": "string", "description": "Creation timestamp" }
+      },
+      "required": ["uid", "email"]
+    },
+    "PublishedWork": {
+      "title": "PublishedWork",
+      "description": "Published creations (photos, videos, 3D designs) in the Eagle showcase",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Work identifier" },
+        "type": { "type": "string", "enum": ["photo", "video", "design"], "description": "Type of media" },
+        "title": { "type": "string", "description": "Title of the published creation" },
+        "creator": { "type": "string", "description": "Author name" },
+        "creatorUid": { "type": "string", "description": "Author user UID" },
+        "description": { "type": "string", "description": "Creative description" },
+        "mediaUrl": { "type": "string", "description": "Media data or asset URL" },
+        "timestamp": { "type": "string", "description": "Display timestamp" },
+        "likes": { "type": "number", "description": "Like counter" },
+        "tags": { "type": "string", "description": "Comma-separated or tag list" },
+        "filterDetails": { "type": "string", "description": "Settings applied" }
+      },
+      "required": ["id", "type", "title", "mediaUrl"]
+    },
+    "UserChat": {
+      "title": "UserChat",
+      "description": "Saved chat conversation with Eagle AI",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Chat identifier" },
+        "userId": { "type": "string", "description": "Owner user ID" },
+        "mode": { "type": "string", "description": "Chatbot mode used" },
+        "title": { "type": "string", "description": "Chat summary title" },
+        "messages": { "type": "string", "description": "Serialized message array" },
+        "updatedAt": { "type": "string", "description": "Last update timestamp" }
+      },
+      "required": ["id", "userId", "messages"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile documents"
+    },
+    "/published_works/{workId}": {
+      "schema": "PublishedWork",
+      "description": "Public community and creator published projects"
+    },
+    "/users/{userId}/chats/{chatId}": {
+      "schema": "UserChat",
+      "description": "Private chat conversation threads"
+    }
+  }
+}

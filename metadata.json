@@ -1,0 +1,6 @@
+{
+  "name": "Eagle Technology",
+  "description": "A modern, premium, fully responsive 3D AI technology platform featuring AI Chatbot, photo editing, video editing, and creative suite created by Rahul R.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
